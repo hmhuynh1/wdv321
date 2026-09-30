@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDV321 Advanced JavaScript</title>
+    <style>
+        #container {
+            background-color: blanchedalmond;
+            width:70%;
+            margin-left:auto;
+            margin-right:auto;
+            padding:5px;
+        }
+
+        section {
+            display:flex;
+            justify-content: center;
+        }
+
+        .leftSide, .rightSide {
+            border:thin solid brown;
+            width:50%;
+            padding-left:15px;
+        }
+
+
+    </style>
+    <script>
+
+        const teamNames = ["Chiefs","Raiders","Cubs"];
+
+
+        function populateTeams() {
+            for (let i = 0; i < teamNames.length; i++) {
+                document.write(
+                    '<option value="' + teamNames[i] + '">' +
+                    teamNames[i] +
+                    '</option>'
+
+                );
+            }
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="container">
+        <header>
+
+        </header>
+        <main>
+            <h1>WDV321 Advanced JavaScript</h1>
+            <h2>Dynamic Content - Drop Down Lists</h2>
+            <p>The goals of this assignment:</p>
+                <ol>
+                    <li>Demonstrate how to dynamically populate a select element using the document.write() technique</li>
+                    <li>Demonstrate how to dynamically populate a select element using the createElement() technique</li>
+                    <li>Demonstrate how to dynamically add an option to a select element</li>
+                    <li>Demonstrate how to dynamically change the options of a select element</li>
+                </ol>
+            
+            
+
+            <section>
+                <div class="leftSide">
+                    <h3>Team Names</h3>
+                    <div>
+                        <label for="teamNames">Team Names</label>
+                        <select name="teamNames" id="teamNames">
+                            <option value="">Select a team</option>
+                            <script>
+                                populateTeams();
+                            </script>
+                        </select>
+
+                        <p>Team Name: <span id="outputName"></span></p>
+                    </div>
+                    <div>
+
+                    <form method="post" action="#">
+                        <label for="newTeamName">New Team Name: </label>
+                        <input type="text" name="newTeamName" id="newTeamName">
+
+                     <p>
+            
+                        <input type="button" value="Add Team Name" id="addTeam">
+
+                        <input type="reset">
+                     </p>
+                    </form>
+
+
+
+                    <div>
+                        <h4>Instructions:</h4>
+                        <ol>
+                            <li>Use document.write() and the teamNames array to populate the teamNames select element.</li>
+                            <li>When a team is selected display the selected name next to 'Team Name:'' on the page.</li>
+                            <li>When the Add Team Name button is clicked add the name entered in the textfield to the teamNames select element.</li>
+                            <li>The reset button should reset the fields to their original values.</li>
+                        </ol>
+                    </div>
+                </div>
+               
+
+            </section>
+            
+
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+
+
+    <script>
+    document.getElementById("teamNames").addEventListener("change", function() {
+        document.getElementById("outputName").textContent = this.value;
+    });
+
+    document.getElementById("addTeam").addEventListener("click", function() {
+        const newTeam = document.getElementById("newTeamName").value;
+        const teamSelect = document.getElementById("teamNames");
+
+        if (newTeam !== "") {
+            const newOption = document.createElement("option");
+
+            newOption.value = newTeam;
+            newOption.textContent = newTeam;
+
+            teamSelect.appendChild(newOption);
+
+            document.getElementById("newTeamName").value = "";
+        }
+    });
+
+    document.querySelector("input[type='reset']").addEventListener("click", function() {
+        const teamSelect = document.getElementById("teamNames");
+
+        while (teamSelect.options.length > 4) {
+            teamSelect.remove(4);
+        }
+
+        teamSelect.selectedIndex = 0;
+
+        document.getElementById("outputName").textContent = "";
+    });
+</script>
+
+
+</body>
+
+</html>
