@@ -29,6 +29,8 @@
     <script>
 
         const teamNames = ["Chiefs","Raiders","Cubs"];
+        const cookies = ["Chocolate Chip Cookie", "Sugar Cookie", "Peanut Butter Cookie"];
+        const candies = ["M&Ms","Baby Ruth","Snickers"];
 
 
         function populateTeams() {
@@ -42,6 +44,7 @@
             }
         }
 
+        
 
 
 
@@ -104,11 +107,55 @@
                             <li>The reset button should reset the fields to their original values.</li>
                         </ol>
                     </div>
-                </div>
-               
+                </div>             
 
-            </section>
-            
+            </section>       
+            <section>
+                <div class="rightSide">
+                    <h3>Cookies or Candy?</h3>
+                    <div>
+                        <label for="productDisplay">Products: </label>
+                        <select name="productDisplay" id="productDisplay">
+                            <option value="none">Select a Product</option>
+                            
+                        </select>
+
+
+
+                        <p>
+                            Selected Product: <span id="outputProduct"></span>
+                        </p>
+                    </div>
+                    <p>
+
+                    <form method="post" action="#">
+                <label for="displayCookies">Cookies: </label>
+                <input type="radio" name="chooseProduct" id="displayCookies" value="cookies" checked>
+                <br>
+
+    <label for="displayCandy">Candy: </label>
+    <input type="radio" name="chooseProduct" id="displayCandy" value="candy">
+
+    <p>
+        <input type="reset" id="productReset">
+    </p>
+</form>
+
+                    <p>
+    
+                    </form>
+                    <div>
+                        <h4>Instructions:</h4>
+                        <ol>
+                            <li>Use the createElement() technique and the cookies array to populate the productDisplay select element.</li>
+                            <li>When a product is selected is selected, display the selected name next to 'Selected Product:'' on the page.</li>
+                            <li>Change the contents of the productDisplay based on which radio button is selected.</li>
+                            <li>The reset button should reset the fields to their original values.</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </section> 
 
         </main>
         <footer>
@@ -116,7 +163,7 @@
         </footer>
     </div>
 
-
+    
     <script>
     document.getElementById("teamNames").addEventListener("change", function() {
         document.getElementById("outputName").textContent = this.value;
@@ -149,6 +196,50 @@
 
         document.getElementById("outputName").textContent = "";
     });
+</script>
+
+<script>
+    function populateProducts(products) {
+    const productSelect = document.getElementById("productDisplay");
+
+    productSelect.innerHTML = "";
+
+    for (let i = 0; i < products.length; i++) {
+        const option = document.createElement("option");
+
+        option.value = products[i];
+        option.textContent = products[i];
+
+        productSelect.appendChild(option);
+    }
+}
+populateProducts(cookies);
+</script>
+
+
+
+
+<script>
+    document.getElementById("displayCookies").addEventListener("change", function() {
+    populateProducts(cookies);
+});
+
+document.getElementById("displayCandy").addEventListener("change", function() {
+    populateProducts(candies);
+});
+
+document.getElementById("productDisplay").addEventListener("change", function() {
+    document.getElementById("outputProduct").textContent = this.value;
+});
+
+</script>
+
+<script>
+    document.getElementById("productReset").addEventListener("click", function() {
+    document.getElementById("displayCookies").checked = true;
+    populateProducts(cookies);
+    document.getElementById("outputProduct").textContent = "";
+});
 </script>
 
 
