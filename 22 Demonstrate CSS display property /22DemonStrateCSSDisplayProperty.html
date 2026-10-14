@@ -42,9 +42,122 @@
 		</label>
   </p>
 	<section class="displayContainer">
-		<p> </p>
-	</section>
-	<p> </p>
-	<p>&nbsp;</p>
+
+        <h3>Display Container</h3>
+
+        <!-- Complaints dropdown -->
+        <div id="complaints" class="contentSection">
+            <h4>Company Complaints</h4>
+
+            <label for="complaintType">Choose a complaint:</label>
+            <select id="complaintType" name="complaintType">
+                <option value="">Select a Complaint</option>
+                <option value="service">Poor Customer Service</option>
+                <option value="billing">Billing Issue</option>
+                <option value="delivery">Late Delivery</option>
+                <option value="refund">Refund Request</option>
+            </select>
+        </div>
+
+        <!-- Technical problem checkboxes -->
+        <div id="technical" class="contentSection">
+            <h4>Technical Problems</h4>
+
+            <label>
+                <input type="checkbox" name="technicalProblem"
+                       value="internet">
+                Internet Connection Issues
+            </label>
+
+            <label>
+                <input type="checkbox" name="technicalProblem"
+                       value="software">
+                Software Not Working
+            </label>
+
+            <label>
+                <input type="checkbox" name="technicalProblem"
+                       value="login">
+                Unable to Log In
+            </label>
+
+            <label>
+                <input type="checkbox" name="technicalProblem"
+                       value="device">
+                Device Won't Turn On
+            </label>
+        </div>
+
+        <!-- Product issue radio buttons -->
+        <div id="products" class="contentSection">
+            <h4>Product Issues</h4>
+
+            <label>
+                <input type="radio" name="productIssue"
+                       value="damaged">
+                Damaged Product
+            </label>
+
+            <label>
+                <input type="radio" name="productIssue"
+                       value="defective">
+                Defective Product
+            </label>
+
+            <label>
+                <input type="radio" name="productIssue"
+                       value="missing">
+                Missing Parts
+            </label>
+
+            <label>
+                <input type="radio" name="productIssue"
+                       value="wrong">
+                Incorrect Product Received
+            </label>
+        </div>
+
+        <p id="placeholder">
+            Please select a reason for contact above.
+        </p>
+
+    </section>
+
+    <script>
+        // Get the dropdown and content sections
+        const contactType = document.getElementById("contactType");
+
+        const complaints = document.getElementById("complaints");
+        const technical = document.getElementById("technical");
+        const products = document.getElementById("products");
+        const placeholder = document.getElementById("placeholder");
+
+        // Listen for changes to the Reason For Contact dropdown
+        contactType.addEventListener("change", function () {
+
+            // Hide all content sections
+            complaints.style.display = "none";
+            technical.style.display = "none";
+            products.style.display = "none";
+
+            // Hide the placeholder when a selection is made
+            placeholder.style.display = "none";
+
+            // Display the selected content section
+            if (contactType.value === "C") {
+                complaints.style.display = "block";
+            }
+            else if (contactType.value === "T") {
+                technical.style.display = "block";
+            }
+            else if (contactType.value === "P") {
+                products.style.display = "block";
+            }
+            else {
+                placeholder.style.display = "block";
+            }
+        });
+    </script>
+
 </body>
 </html>
